@@ -40,6 +40,41 @@ type ItemListedEventPayload struct {
 	PaymentToken       PaymentToken `mapstructure:"payment_token"`
 	IsPrivate          bool         `mapstructure:"is_private"`
 	EventTimestamp     string       `mapstructure:"event_timestamp"`
+	ProtocolAddress    string       `mapstructure:"protocol_address"`
+	ProtocolData       ProtocolData `mapstructure:"protocol_data"`
+}
+type ProtocolData struct {
+	Parameters Parameters `mapstructure:"parameters"`
+	Signature  string     `mapstructure:"signature"`
+}
+type Parameters struct {
+	ConduitKey                      string          `mapstructure:"conduitKey"`
+	Consideration                   []Consideration `mapstructure:"consideration"`
+	Counter                         int             `mapstructure:"counter"`
+	EndTime                         string          `mapstructure:"endTime"`
+	Offer                           []Offer         `mapstructure:"offer"`
+	Offerer                         string          `mapstructure:"offerer"`
+	OrderType                       int             `mapstructure:"orderType"`
+	Salt                            string          `mapstructure:"salt"`
+	StartTime                       string          `mapstructure:"startTime"`
+	TotalOriginalConsiderationItems int             `mapstructure:"totalOriginalConsiderationItems"`
+	Zone                            string          `mapstructure:"zone"`
+	ZoneHash                        string          `mapstructure:"zoneHash"`
+}
+type Consideration struct {
+	EndAmount            string `mapstructure:"endAmount"`
+	IdentifierOrCriteria string `mapstructure:"identifierOrCriteria"`
+	ItemType             int    `mapstructure:"itemType"`
+	Recipient            string `mapstructure:"recipient"`
+	StartAmount          string `mapstructure:"startAmount"`
+	Token                string `mapstructure:"token"`
+}
+type Offer struct {
+	EndAmount            string `mapstructure:"endAmount"`
+	IdentifierOrCriteria string `mapstructure:"identifierOrCriteria"`
+	ItemType             int    `mapstructure:"itemType"`
+	StartAmount          string `mapstructure:"startAmount"`
+	Token                string `mapstructure:"token"`
 }
 
 type ItemReceivedOfferEvent struct {
